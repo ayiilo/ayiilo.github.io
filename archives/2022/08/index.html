@@ -105,7 +105,7 @@
         
         
         <li class="menu-item menu-item-archives">
-          <a href="/%E5%BD%92%E6%A1%A3">
+          <a href="/archives">
             
             <i class="icon icon-archives-fill"></i>
             
@@ -115,7 +115,7 @@
         
         
         <li class="menu-item menu-item-categories">
-          <a href="/%E5%88%86%E7%B1%BB">
+          <a href="/categories">
             
             <i class="icon icon-folder"></i>
             
@@ -125,7 +125,7 @@
         
         
         <li class="menu-item menu-item-tags">
-          <a href="/%E6%A0%87%E7%AD%BE">
+          <a href="/tags">
             
             <i class="icon icon-tags"></i>
             
@@ -135,7 +135,7 @@
         
         
         <li class="menu-item menu-item-repository">
-          <a href="/%E9%A1%B9%E7%9B%AE">
+          <a href="/repository">
             
             <i class="icon icon-project"></i>
             
@@ -144,8 +144,28 @@
         </li>
         
         
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-l#inks">
+          <a href="/links">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.L#inks</span>
+          </a>
+        </li>
+        
+        
         <li class="menu-item menu-item-about">
-          <a href="/%E5%85%B3%E4%BA%8E">
+          <a href="/about">
             
             <i class="icon icon-cup-fill"></i>
             
@@ -279,6 +299,88 @@
   </div>
   
 
+    
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<style>
+    *:focus {
+        outline: none;
+    }
+
+    #main {
+        margin: auto;
+    }
+
+    #title,
+    .time {
+        height: 10px;
+        line-height: 10px;
+        text-align: center;
+        font-size: 15px;
+    }
+    .time {
+        margin: 12px 0;
+        font-size: 12px;
+    }
+
+    .info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        text-align: center;
+        line-height: 10px;
+    }
+
+    .info > div {
+        width: 50%;
+    }
+
+    .info > div > p:first-child {
+        font-size: 13px;
+    }
+</style>
+
+<div>
+    <div class="title">
+        <p id="title">新冠疫情最新统计</p>
+        <p class="time">更新时间：2022-02-20 17：40</p>
+        <hr />
+    </div>
+
+    <div class="info" id="cninfo">
+        <div class="currentConfirmedCount">
+            <p>现存确诊</p>
+            <p style="color: rgb(247, 76, 49)">123123</p>
+        </div>
+        <div class="suspectedCount">
+            <p>境外输入</p>
+            <p style="color: rgb(247, 130, 7)">12341</p>
+        </div>
+        <div class="deadCount">
+            <p>累计死亡</p>
+            <p style="color: rgb(93, 112, 146)">51221</p>
+        </div>
+        <div class="curedCount">
+            <p>累计治愈</p>
+            <p style="color: rgb(40, 183, 163)">51232</p>
+        </div>
+    </div>
+</div>
+<script>
+    $.ajax({
+        type: "GET",
+        url: "http://api.hmister.cn/ncp/",
+        dataType: "json",
+        success: function (data) {
+            $(".time").html("更新时间：" + data.data[0].time);
+            $(".currentConfirmedCount p:eq(1)").html(
+                data.data[0].currentConfirmedCount
+            );
+            $(".suspectedCount p:eq(1)").html(data.data[0].suspectedCount);
+            $(".deadCount p:eq(1)").html(data.data[0].deadCount);
+            $(".curedCount p:eq(1)").html(data.data[0].curedCount);
+        },
+    });
+</script>
     
   </div>
 </aside>
